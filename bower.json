@@ -1,0 +1,31 @@
+{
+  "name": "ya_Test_Task_Manager",
+  "version": "0.0.0",
+  "authors": [
+    "Vasil ZCFD Vanchuck <v.vanchuk@tut.by>"
+  ],
+  "description": "Example of task manage tool",
+  "main": "index.html",
+  "keywords": [
+    "backbone",
+    "tasklist",
+    "code",
+    "example"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendors",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "lodash": "~2.4.1",
+    "backbone": "~1.1.2",
+    "marionette": "~1.8.1"
+  }
+}
