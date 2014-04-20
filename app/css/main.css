@@ -1,3 +1,15 @@
 .task-item * {
     display: inline-block;
 }
+
+.lists {
+    height: 610px;
+    width: 100%;
+}
+
+.lists > div {
+    width: 24%;
+    float: left;
+    max-height: 600px;
+    overflow-y: auto;
+}

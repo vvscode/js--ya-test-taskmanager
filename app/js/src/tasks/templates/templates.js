@@ -24,7 +24,9 @@ return __p
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<h1>Task list</h1>\r\n<button class="js-new-task">New task</button>';
+__p += '<div>\r\n    <h1>' +
+__e( title ) +
+'</h1>\r\n    <button class="js-new-task">New task</button>\r\n</div>';
 
 }
 return __p
