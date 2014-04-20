@@ -5,7 +5,6 @@ define(
         var taskManagerApp = new Marionette.Application();
 
         taskManagerApp.addRegions({
-            'mainRegion': '#task-manager',
             'suspenseRegion': '#task-manager-suspense',
             'dealingRegion': '#task-manager-dealing',
             'completedRegion': '#task-manager-completed',
@@ -18,27 +17,25 @@ define(
             }
 
             taskManagerApp.tasksList =  new TasksCollection();
-            taskManagerApp.taksView = new TasksListView({collection: taskManagerApp.tasksList});
 
             taskManagerApp.taksViewSuspense = new TasksListView({
                 collection: taskManagerApp.tasksList,
-                filter: function(item){ return item.get('state') == 'suspense'; },
+                targetStatus: 'suspense',
                 title: 'Suspense list'
             });
 
             taskManagerApp.taksViewDealing = new TasksListView({
                 collection: taskManagerApp.tasksList,
-                filter: function(item){ return item.get('state') == 'dealing'; },
+                targetStatus: 'dealing',
                 title: 'Dealing list'
             });
 
             taskManagerApp.taksViewCompleted = new TasksListView({
                 collection: taskManagerApp.tasksList,
-                filter: function(item){ return item.get('state') == 'completed'; },
+                targetStatus: 'completed',
                 title: 'Completed list'
             });
 
-            taskManagerApp.mainRegion.show(taskManagerApp.taksView);
             taskManagerApp.suspenseRegion.show(taskManagerApp.taksViewSuspense);
             taskManagerApp.dealingRegion.show(taskManagerApp.taksViewDealing);
             taskManagerApp.completedRegion.show(taskManagerApp.taksViewCompleted);
@@ -58,7 +55,7 @@ define(
             if(!data.id){
                 taskManagerApp.tasksList.create(data);
             } else {
-                taskManagerApp.tasksList.get(data.id).set(data);
+                taskManagerApp.tasksList.get(data.id).set(data).save();
             }
         });
 

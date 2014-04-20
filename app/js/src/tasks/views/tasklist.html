@@ -1,4 +1,7 @@
 <div>
     <h1><%- title %></h1>
-    <button class="js-new-task">New task</button>
+    <%
+        var style = (targetStatus == 'suspense')? '': 'visibility: hidden';
+    %>
+    <a class="js-new-task btn" style="<%- style %>"><i class="glyphicon glyphicon-plus"></i>New task</a>
 </div>

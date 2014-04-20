@@ -1,15 +1,43 @@
-.task-item * {
+.suspense-only .task-item:not(.suspense),
+.dealing-only .task-item:not(.dealing),
+.completed-only .task-item:not(.completed) {
+    display: none;
+}
+
+.task-item .edit {
+    cursor: pointer;
+}
+
+.task-form {
+    border: solid #269abc 2px;
+    padding: 5px;
+    background: #bce8f1;
+}
+
+.task-form .message:empty {
+    visibility: hidden;
+}
+
+.task-form .buttons {
+    text-align: center;
+}
+
+.task-form:not(:empty) {
+    position: fixed;
+    left: 40%;
+    top: 30%;
+    width: 315px;
+}
+
+.task-form label {
     display: inline-block;
+    width: 100px;
+    min-width: 100px;
 }
 
-.lists {
-    height: 610px;
-    width: 100%;
+.task-form input,
+.task-form textarea,
+.task-form select {
+    width: 300px;
 }
 
-.lists > div {
-    width: 24%;
-    float: left;
-    max-height: 600px;
-    overflow-y: auto;
-}

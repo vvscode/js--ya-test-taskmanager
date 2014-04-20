@@ -1,6 +1,15 @@
-<div class="task-item">
-    <span class="name"><%- name %></span>
-    <p class="description"><%- description %></p>
-    <span class="state"><%- status %></span>
-    <button class="edit">Edit</button>
+<div class="task-item <%- state %>">
+    <%
+    var className = '';
+    if(state == 'suspense'){
+        className = 'alert alert-info';
+    } else if (state == 'dealing'){
+        className = 'alert alert-warning';
+    } else if (state == 'completed'){
+        className = 'alert alert-success';
+    }
+    %>
+    <div class="edit  <%- className %>">
+        <span class="name" title="<%- description %>"><%- name %></span>
+    </div>
 </div>

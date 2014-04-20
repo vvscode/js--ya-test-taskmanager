@@ -5,7 +5,8 @@ require.config({
         'jquery': './../../vendors/jquery/dist/jquery',
         'marionette': './../../vendors/marionette/lib/backbone.marionette',
         'backbone.localstorage': './../../vendors/backbone.localstorage/backbone.localStorage',
-        'jst': './src/tasks/templates/templates'
+        'jst': './src/tasks/templates/templates',
+        'taskManagerApp': './src/app'
     },
     'shim': {
         'jquery': {

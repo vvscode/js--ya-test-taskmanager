@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>ya Test Task Manager: Example of task manage tool</title>
-	<link rel="stylesheet" href="app/css/main.css" type="text/css">
+    <meta charset="utf-8">
+    <title>ya Test Task Manager: Example of task manage tool</title>
+    <link rel="stylesheet" href="vendors/bootstrap/dist/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="app/css/main.css" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<div class="lists">
-    <div id="task-manager"></div>
-    <div id="task-manager-suspense"></div>
-    <div id="task-manager-dealing"></div>
-    <div id="task-manager-completed"></div>
+<div class="container">
+    <div class="lists row">
+        <div id="task-manager-suspense" class="task-list col-md-4"></div>
+        <div id="task-manager-dealing" class="task-list col-md-4"></div>
+        <div id="task-manager-completed" class="task-list col-md-4"></div>
+    </div>
+    <div id="task-form"></div>
 </div>
-<div id="task-form"></div>
 </body>
-<script data-main="app/js/main" src="vendors/requirejs/require.js"></script>
-<script src="app/js/src/app.js"></script>
-<script src="app/js/src/tasks/task.js"></script>
-<script src="app/js/src/tasks/tasks.js"></script>
-<script src="app/js/src/tasks/taskView.js"></script>
-<script src="app/js/src/tasks/taskFormView.js"></script>
-<script src="app/js/src/tasks/tasksListView.js"></script>
-<script src="app/js/src/tasks/eventBus.js"></script>
+<script data-main="app/js/main.concat" src="vendors/requirejs/require.js"></script>
+<!--<script src="app/js/src/app.js"></script>-->
+<!--<script src="app/js/src/tasks/task.js"></script>-->
+<!--<script src="app/js/src/tasks/tasks.js"></script>-->
+<!--<script src="app/js/src/tasks/taskView.js"></script>-->
+<!--<script src="app/js/src/tasks/taskFormView.js"></script>-->
+<!--<script src="app/js/src/tasks/tasksListView.js"></script>-->
+<!--<script src="app/js/src/tasks/eventBus.js"></script>-->
 </html>
