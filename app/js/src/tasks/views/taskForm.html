@@ -1,0 +1,15 @@
+<div class="task-form">
+    <span class="id"><%- (!!id)? ('#'+id) : '[NEW]' %></span>
+    <div class="name"><label>Name: <input name="name" value="<%- name %>"/></label></div>
+    <div class="description"><label>Description: <input name="description" value="<%- description %>"/></label></div>
+    <div class="state"><label>Status:<select name="state">
+        <% for(var i in possibleStatuses) { %>
+            <option><%- possibleStatuses[i] %></option>
+        <% } %>
+    </select></label></div>
+    <div class="message"></div>
+    <div class="buttons">
+        <button class="save">Save</button>
+        <button class="cancel">Cancel</button>
+    </div>
+</div>

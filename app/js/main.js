@@ -18,7 +18,7 @@ require.config({
             'deps': ['jquery', 'underscore'],
             'exports': 'Backbone'
         },
-        'backbone-localstorage' : {
+        'backbone-localstorage': {
             deps: ['backbone']
         },
         'marionette': {

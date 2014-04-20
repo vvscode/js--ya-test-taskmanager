@@ -1,21 +1,37 @@
-define('taskManagerApp', ['marionette', 'TasksCollection', 'TasksListView'], function (Marionette, TasksCollection, TasksListView) {
-    var taskManagerApp = new Marionette.Application();
+define(
+    'taskManagerApp',
+    ['marionette', 'TasksCollection', 'TasksListView', 'taskFormView', 'eventBus'],
+    function (Marionette, TasksCollection, TasksListView, taskFormView, eventBus) {
+        var taskManagerApp = new Marionette.Application();
 
-    taskManagerApp.addRegions({
-        'mainRegion': '#task-manager'
-    })
+        taskManagerApp.addRegions({
+            'mainRegion': '#task-manager',
+            'taskFormRegion': '#task-form'
+        });
 
-    taskManagerApp.on("initialize:after", function () {
-        console.log("taskManagerApp has started");
+        taskManagerApp.on("initialize:after", function () {
+            if (Backbone.history) {
+                Backbone.history.start();
+            }
 
-        if (Backbone.history) {
-            Backbone.history.start();
-        }
+            taskManagerApp.tasksList =  new TasksCollection();
+            taskManagerApp.taksView = new TasksListView({collection: taskManagerApp.tasksList});
+            taskManagerApp.mainRegion.show(taskManagerApp.taksView);
+        });
 
-        taskManagerApp.taksView = new TasksListView({collection: new TasksCollection()});
+        taskManagerApp.listenTo(eventBus, 'addNewTask', function () {
+            var formVew = new taskFormView();
+            taskManagerApp.taskFormRegion.show(formVew);
+        });
 
-        taskManagerApp.mainRegion.show(taskManagerApp.taksView);
+
+        taskManagerApp.listenTo(eventBus, 'saveTask', function (data) {
+            if(!data.id){
+                taskManagerApp.tasksList.create(data);
+            } else {
+                taskManagerApp.tasksList.set(data);
+            }
+        });
+
+        return  taskManagerApp;
     });
-
-    return  taskManagerApp;
-});

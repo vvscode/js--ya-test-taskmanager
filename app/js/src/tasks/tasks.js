@@ -2,8 +2,7 @@ define('TasksCollection', ['backbone', 'TaskModel', 'backbone.localstorage'], fu
     var TasksCollection = Backbone.Collection.extend({
         model: TaskModel,
         localStorage: new Backbone.LocalStorage('taskmanager:tasks'),
-        initialize: function(){
-            console.log('TasksCollection initialized');
+        initialize: function () {
             this.fetch();
         }
     });
