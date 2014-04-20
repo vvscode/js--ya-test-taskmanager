@@ -24,12 +24,16 @@ define(
             taskManagerApp.taskFormRegion.show(formVew);
         });
 
+        taskManagerApp.listenTo(eventBus, 'editTask', function (data) {
+            var formVew = new taskFormView({model: taskManagerApp.tasksList.get(data.id)});
+            taskManagerApp.taskFormRegion.show(formVew);
+        });
 
         taskManagerApp.listenTo(eventBus, 'saveTask', function (data) {
             if(!data.id){
                 taskManagerApp.tasksList.create(data);
             } else {
-                taskManagerApp.tasksList.set(data);
+                taskManagerApp.tasksList.get(data.id).set(data);
             }
         });
 

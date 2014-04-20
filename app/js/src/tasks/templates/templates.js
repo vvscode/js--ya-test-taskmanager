@@ -1,18 +1,3 @@
-(function() {(window["JST"] = window["JST"] || {})["task.html"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '<div class="task-item">\r\n    <h3>' +
-__e( name ) +
-'</h3>\r\n    <p>' +
-__e( description ) +
-'</p>\r\n    <span>' +
-__e( status ) +
-'</span>\r\n</div>';
-
-}
-return __p
-}})();
 (function() {(window["JST"] = window["JST"] || {})["taskForm.html"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
@@ -40,6 +25,21 @@ obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<h1>Task list</h1>\r\n<button class="js-new-task">New task</button>';
+
+}
+return __p
+}})();
+(function() {(window["JST"] = window["JST"] || {})["taskListItem.html"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="task-item">\r\n    <span class="name">' +
+__e( name ) +
+'</span>\r\n    <p class="description">' +
+__e( description ) +
+'</p>\r\n    <span class="state">' +
+__e( status ) +
+'</span>\r\n    <button class="edit">Edit</button>\r\n</div>';
 
 }
 return __p

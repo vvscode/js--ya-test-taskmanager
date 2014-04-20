@@ -7,6 +7,9 @@ define('TasksListView', ['marionette', 'TaskView', 'eventBus'], function (Marion
         },
         addNewTask: function () {
             eventBus.trigger('addNewTask');
+        },
+        modelEvents: {
+            "change": "modelChanged"
         }
     });
 
