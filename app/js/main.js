@@ -3,8 +3,10 @@ require.config({
         'backbone': './../../vendors/backbone/backbone',
         'underscore': './../../vendors/lodash/dist/lodash',
         'jquery': './../../vendors/jquery/dist/jquery',
-        'marionette': './../../vendors/marionette/lib/backbone.marionette',
+        'marionette': './../../vendors/marionette/lib/core/amd/backbone.marionette',
         'backbone.localstorage': './../../vendors/backbone.localstorage/backbone.localStorage',
+        'backbone.babysitter': './../../vendors/backbone.babysitter/lib/backbone.babysitter',
+        'backbone.wreqr': './../../vendors/backbone.wreqr/lib/backbone.wreqr',
         'jst': './src/tasks/templates/templates',
         'taskManagerApp': './src/app'
     },
