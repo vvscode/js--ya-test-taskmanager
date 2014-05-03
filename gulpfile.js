@@ -7,21 +7,23 @@ gulp.task('requirejsBuild', function() {
     rjs({
         baseUrl: 'app/js/',
         include: [
-            'main.js',
-            'src/app.js',
             'src/tasks/task.js',
             'src/tasks/tasks.js',
             'src/tasks/taskView.js',
             'src/tasks/taskFormView.js',
             'src/tasks/tasksListView.js',
-            'src/tasks/eventBus.js'
+            'src/tasks/eventBus.js',
+            'src/app.js',
+            'main.js'
         ],
         'paths': {
             'backbone': './../../vendors/backbone/backbone',
             'underscore': './../../vendors/lodash/dist/lodash',
             'jquery': './../../vendors/jquery/dist/jquery',
-            'marionette': './../../vendors/marionette/lib/backbone.marionette',
+            'marionette': './../../vendors/marionette/lib/core/amd/backbone.marionette',
             'backbone.localstorage': './../../vendors/backbone.localstorage/backbone.localStorage',
+            'backbone.babysitter': './../../vendors/backbone.babysitter/lib/backbone.babysitter',
+            'backbone.wreqr': './../../vendors/backbone.wreqr/lib/backbone.wreqr',
             'jst': './src/tasks/templates/templates',
             'taskManagerApp': './src/app'
         },
@@ -29,7 +31,7 @@ gulp.task('requirejsBuild', function() {
             'jquery': {
                 'exports': 'jQuery'
             },
-            'lodash': {
+            'underscore': {
                 'exports': '_'
             },
             'backbone': {
@@ -69,4 +71,4 @@ gulp.task('watch', function() {
     gulp.watch('app/js/src/tasks/views/*', ['templates']);
 });
 
-gulp.task('default', ['templates', 'concat']);
+gulp.task('default', ['templates', 'requirejsBuild']);
