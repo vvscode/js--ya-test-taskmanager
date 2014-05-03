@@ -1,0 +1,25 @@
+{
+  "name": "ya-test-taskmanager",
+  "version": "0.0.0",
+  "description": "Simple task mager with marionette js",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vvs-code/ya-test-taskmanager.git"
+  },
+  "author": "Vasiliy Vanchuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vvs-code/ya-test-taskmanager/issues"
+  },
+  "homepage": "https://github.com/vvs-code/ya-test-taskmanager",
+  "devDependencies": {
+    "gulp": "~3.6.2",
+    "gulp-template-compile": "~0.2.0",
+    "gulp-concat": "~2.2.0",
+    "gulp-requirejs": "~0.1.3"
+  }
+}
