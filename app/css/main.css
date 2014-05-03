@@ -1,9 +1,3 @@
-.suspense-only .task-item:not(.suspense),
-.dealing-only .task-item:not(.dealing),
-.completed-only .task-item:not(.completed) {
-    display: none;
-}
-
 .task-item .edit {
     cursor: pointer;
 }

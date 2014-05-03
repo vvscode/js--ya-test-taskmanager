@@ -24,6 +24,7 @@ gulp.task('requirejsBuild', function() {
             'backbone.localstorage': './../../vendors/backbone.localstorage/backbone.localStorage',
             'backbone.babysitter': './../../vendors/backbone.babysitter/lib/backbone.babysitter',
             'backbone.wreqr': './../../vendors/backbone.wreqr/lib/backbone.wreqr',
+            'backbone-virtual-collection': './../../vendors/backbone-virtual-collection/backbone.virtual-collection',
             'jst': './src/tasks/templates/templates',
             'taskManagerApp': './src/app'
         },

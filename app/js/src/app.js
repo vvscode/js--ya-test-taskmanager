@@ -1,6 +1,6 @@
 define(
     'taskManagerApp',
-    ['marionette', 'TasksCollection', 'TasksListView', 'taskFormView', 'eventBus'],
+    ['marionette', 'TasksCollection', 'TasksListView', 'taskFormView', 'eventBus', 'backbone-virtual-collection'],
     function (Marionette, TasksCollection, TasksListView, taskFormView, eventBus) {
         var taskManagerApp = new Marionette.Application();
 
@@ -19,19 +19,31 @@ define(
             taskManagerApp.tasksList =  new TasksCollection();
 
             taskManagerApp.taksViewSuspense = new TasksListView({
-                collection: taskManagerApp.tasksList,
+                collection: new Backbone.VirtualCollection(taskManagerApp.tasksList, {
+                    filter: function (task) {
+                        return task.get('state') == 'suspense';
+                    }
+                }),
                 targetStatus: 'suspense',
                 title: 'Suspense list'
             });
 
             taskManagerApp.taksViewDealing = new TasksListView({
-                collection: taskManagerApp.tasksList,
+                collection: new Backbone.VirtualCollection(taskManagerApp.tasksList, {
+                    filter: function (task) {
+                        return task.get('state') == 'dealing';
+                    }
+                }),
                 targetStatus: 'dealing',
                 title: 'Dealing list'
             });
 
             taskManagerApp.taksViewCompleted = new TasksListView({
-                collection: taskManagerApp.tasksList,
+                collection: new Backbone.VirtualCollection(taskManagerApp.tasksList, {
+                    filter: function (task) {
+                        return task.get('state') == 'completed';
+                    }
+                }),
                 targetStatus: 'completed',
                 title: 'Completed list'
             });
