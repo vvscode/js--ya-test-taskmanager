@@ -2,8 +2,32 @@ var gulp = require('gulp');
 var template = require('gulp-template-compile');
 var concat = require('gulp-concat');
 var rjs = require('gulp-requirejs');
+var jsmin = require('gulp-jsmin');
+var minifyCSS = require('gulp-minify-css');
+var Q = require('q');
 
-gulp.task('requirejsBuild', function() {
+gulp.task('templates', function() {
+    /*
+     For some strange reason, sequential tasks are started, if this task is the first - write a file does not have time to occur.
+     To solve this problem (I google it, but did not find the solution, if you can - let me know),
+      delay for file recording.
+     */
+    var deferred = Q.defer();
+
+    gulp.src(['app/js/src/tasks/views/*'])
+        .pipe(template())
+        .pipe(concat('templates.js'))
+        .pipe(gulp.dest('app/js/src/tasks/templates'));
+
+
+    setTimeout(function() {
+        deferred.resolve();
+    }, 100);
+
+    return deferred.promise;
+});
+
+gulp.task('requirejsBuild', ['templates'], function() {
     rjs({
         baseUrl: 'app/js/',
         include: [
@@ -52,24 +76,12 @@ gulp.task('requirejsBuild', function() {
         },
         out: 'app.concat.js'
     })
-        .pipe(gulp.dest('./app/')); // pipe it to the output DIR
+        .pipe(jsmin())
+        .pipe(gulp.dest('./app/js/min/')); // pipe it to the output DIR
 });
 
-gulp.task('templates', function() {
-    gulp.src(['app/js/src/tasks/views/*'])
-        .pipe(template())
-        .pipe(concat('templates.js'))
-        .pipe(gulp.dest('app/js/src/tasks/templates'));
+gulp.task('watchTemplates', function() {
+    gulp.watch('app/js/src/tasks/views/*', ['requirejsBuild']);
 });
 
-gulp.task('concat', function() {
-    gulp.src(['app/js/src/tasks/*.js', 'app/js/src/*.js', 'app/js/src/tasks/templates/*.js', 'app/js/main.js'])
-        .pipe(concat('main.concat.js'))
-        .pipe(gulp.dest('app/js'));
-});
-
-gulp.task('watch', function() {
-    gulp.watch('app/js/src/tasks/views/*', ['templates']);
-});
-
-gulp.task('default', ['templates', 'requirejsBuild']);
+gulp.task('default',['templates', 'requirejsBuild']);
