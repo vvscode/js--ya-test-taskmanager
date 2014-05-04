@@ -4,8 +4,10 @@ define('eventBus', ['backbone', 'underscore'], function (Backbone, _) {
     _.extend(eventBus, Backbone.Events);
 
     eventBus.on('all', function () {
-        console.info('eventBus message: ', arguments);
-    })
+        if(window.DEBUG_MODE){
+            console.info('eventBus message: ', arguments);
+        }
+    });
 
     return eventBus;
 });

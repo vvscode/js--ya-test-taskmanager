@@ -64,10 +64,14 @@ define(
         });
 
         taskManagerApp.listenTo(eventBus, 'saveTask', function (data) {
+            taskManagerApp.tasksList.once('sync', function(){
+                eventBus.trigger('task-saved', arguments);
+            });
+
             if(!data.id){
-                taskManagerApp.tasksList.create(data);
+                taskManagerApp.tasksList.create(data, {wait: true});
             } else {
-                taskManagerApp.tasksList.get(data.id).set(data).save();
+                taskManagerApp.tasksList.get(data.id).set(data).save(null, {wait: true});
             }
         });
 

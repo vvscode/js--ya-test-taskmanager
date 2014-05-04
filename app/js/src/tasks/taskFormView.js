@@ -20,21 +20,30 @@ define('taskFormView', ['marionette', 'TaskModel', 'eventBus'], function (Marion
             this.$el.find('[name=state]').val(this.model.get('state'));
         },
         getFormData: function(){
+            var attributes = {};
             var keys = _.keys(this.model.toJSON());
-            _.each(keys, _.bind(function(key, num){
-                var $fieldEl = this.$el.find('[name='+key + "]");
+            var that = this;
+            _.each(keys, function(key, num){
+                var $fieldEl = that.$el.find('[name='+key + "]");
                 if($fieldEl.length){
-                    this.model.set(key, $fieldEl.val());
+                    attributes[key] = $fieldEl.val();
                 }
-            }, this));
+            });
+
+            return attributes;
         },
         'save': function () {
-            this.getFormData();
-            if (this.model.isValid()) {
-                eventBus.trigger('saveTask', this.model.toJSON());
-                this.cancel();
+            var formData = this.getFormData();
+            var errorMsg;
+
+            if (errorMsg = this.model.validate(formData)) {
+                this.$el.find('.message').text(errorMsg);
             } else {
-                this.$el.find('.message').text(this.model.validationError);
+                this.stopListening(eventBus, 'task-saved')
+                    .listenToOnce(eventBus, 'task-saved',  _.bind(this.cancel, this));
+
+                this.model.set(formData);
+                eventBus.trigger('saveTask', this.model.toJSON());
             }
         },
         cancel: function(){
