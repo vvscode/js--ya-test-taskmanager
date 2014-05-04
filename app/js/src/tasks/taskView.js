@@ -4,7 +4,7 @@ define('TaskView', ['marionette', 'jst', 'eventBus'], function (Marionette, JST,
         events: {
             'click .edit': 'edit'
         },
-        modelEvents:{
+        modelEvents: {
             'change': 'render'
         },
         edit: function () {

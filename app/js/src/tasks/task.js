@@ -8,18 +8,18 @@ define('TaskModel', ['backbone'], function (Backbone) {
             description: '',
             state: 'suspense'
         },
-        validate: function(attrs, options){
-            if(!attrs.name){
+        validate: function (attrs, options) {
+            if (!attrs.name) {
                 return 'Task name can\'t be blank';
             }
-            if(!attrs.description){
+            if (!attrs.description) {
                 return 'Task description can\'t be blank';
             }
-            if(statuses.indexOf(attrs.state)<0){
+            if (statuses.indexOf(attrs.state) < 0) {
                 return 'Illegal task status';
             }
         },
-        getPossibleStatuses: function(){
+        getPossibleStatuses: function () {
             return _.compact(statuses);
         }
     });

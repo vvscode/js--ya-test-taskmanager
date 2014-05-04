@@ -16,7 +16,7 @@ define(
                 Backbone.history.start();
             }
 
-            taskManagerApp.tasksList =  new TasksCollection();
+            taskManagerApp.tasksList = new TasksCollection();
 
             taskManagerApp.taksViewSuspense = new TasksListView({
                 collection: new Backbone.VirtualCollection(taskManagerApp.tasksList, {
@@ -64,11 +64,11 @@ define(
         });
 
         taskManagerApp.listenTo(eventBus, 'saveTask', function (data) {
-            taskManagerApp.tasksList.once('sync', function(){
+            taskManagerApp.tasksList.once('sync', function () {
                 eventBus.trigger('task-saved', arguments);
             });
 
-            if(!data.id){
+            if (!data.id) {
                 taskManagerApp.tasksList.create(data, {wait: true});
             } else {
                 taskManagerApp.tasksList.get(data.id).set(data).save(null, {wait: true});
